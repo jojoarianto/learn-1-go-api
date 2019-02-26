@@ -7,27 +7,22 @@
 - AWS SAM CLI
 - Docker
 
-## Database
-
-I use postgres, Here is instalation postgres using docker
-
-```bash
-docker pull postgres
-
-# alpine is lite version
-docker run -d -p 0.0.0.0:5432:5432 postgres:alpine
-```
-
-## Installing
-
-Installation just type 
-```bash
-make build
-```
+## Goal
+- [X] API to [get all user](#get-all-users)
+- [X] API to [get user by id](#get-user-by-id)
+- [ ] API to create user
+- [ ] API to delete user
+- [ ] API to update user
 
 ## Run in local with SAM (AWS-SAM-CLI)
 
-Run with SAM
+Compile go project
+```bash
+# see Makefile
+make build
+```
+
+Run with SAM, (required : docker, postgres)
 ```bash
 # http://localhost:8000/
 sam local start-api -p 8000 --env-vars local.env.json
@@ -103,3 +98,15 @@ Response
 - Run local aws-sam-cli, https://github.com/awslabs/aws-sam-cli
 - Generating fake data using SQL, https://vnegrisolo.github.io/postgresql/generate-fake-data-using-sql
 
+## Additional note
+
+### Database
+
+I use postgres, Here is instalation postgres using docker
+
+```bash
+docker pull postgres
+
+# alpine is lite version
+docker run -d -p 0.0.0.0:5432:5432 postgres:alpine
+```

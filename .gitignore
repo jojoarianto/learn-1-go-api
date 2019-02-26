@@ -22,3 +22,6 @@ vendor
 
 # My env
 env.json
+
+# Deployment env on dev stage
+config.dev.json
