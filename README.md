@@ -1,4 +1,4 @@
-# Serverless with Golang
+# Serverless with Golang 
 
 ## Prerequisites
 
@@ -32,7 +32,20 @@ Run with SAM
 # http://localhost:8000/
 sam local start-api -p 8000 --env-vars local.env.json
 ```
+
+## Deployment
+
+```bash
+# set your serverless config
+serverless config credentials --provider aws --key <ACCESS KEY ID> --secret <SECRET KEY>
+
+# deploy
+serverless deploy
+```
+
 ## Get All Users
+
+> live demo [https://0d8n48wogc.execute-api.us-east-1.amazonaws.com/dev/user](https://0d8n48wogc.execute-api.us-east-1.amazonaws.com/dev/user)
 
 Request
 ```bash
@@ -65,6 +78,8 @@ Response
 
 ## Get User By Id
 
+> live demo [https://0d8n48wogc.execute-api.us-east-1.amazonaws.com/dev/user/2](https://0d8n48wogc.execute-api.us-east-1.amazonaws.com/dev/user/2)
+
 Request
 ```bash
 curl --request GET --url http://localhost:8000/user/4 | json_pp
@@ -84,6 +99,7 @@ Response
 
 ### References
 - Create serverless template with golang, https://serverless.com/blog/framework-example-golang-lambda-support/
+- Deploy Serverless, https://medium.com/devopslinks/aws-lambda-serverless-framework-python-part-1-a-step-by-step-hello-world-4182202aba4a
 - Run local aws-sam-cli, https://github.com/awslabs/aws-sam-cli
 - Generating fake data using SQL, https://vnegrisolo.github.io/postgresql/generate-fake-data-using-sql
 
