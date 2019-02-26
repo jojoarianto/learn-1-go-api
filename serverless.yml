@@ -1,0 +1,27 @@
+service: learn-1-go-api # NOTE: update this with your service name
+
+frameworkVersion: ">=1.28.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: go1.x
+  deploymentBucket:
+    name: wp-lambda-bucket
+    serverSideEncryption: AES256
+  environment:
+    PG_CONNECTION: ${file(config.dev.json):PG_CONNECTION}
+
+package:
+ exclude:
+   - ./**
+ include:
+   - ./bin/**
+
+functions:
+  userfunction:
+    handler: bin/get-all-user-func
+    events:
+      - http:
+          path: /user
+          method: get
+
