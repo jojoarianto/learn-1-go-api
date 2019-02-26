@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"os"
+	"strconv"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -30,14 +31,16 @@ type Response events.APIGatewayProxyResponse
 func Handler(ctx context.Context, request events.APIGatewayProxyRequest) (Response, error) {
 	var buf bytes.Buffer
 
+	userID, _ := strconv.Atoi(request.PathParameters["userid"])
+
 	db, err := gorm.Open("postgres", PGConnection)
 	if err != nil {
 		return Response{StatusCode: 400}, err
 	}
 	defer db.Close()
 
-	repo := usecases.NewGetAllUsers(repositories.NewUserRepository(db))
-	data, _ := repo.GetAllUsers()
+	repo := usecases.NewGetUserById(repositories.NewUserRepository(db))
+	data, _ := repo.GetUserById(userID)
 
 	body, err := json.Marshal(map[string]interface{}{
 		"data": data,

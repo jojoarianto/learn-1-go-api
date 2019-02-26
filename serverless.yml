@@ -19,9 +19,27 @@ package:
 
 functions:
   userfunction:
+    runtime: go1.x
     handler: bin/get-all-user-func
+    description: get all user api
     events:
       - http:
           path: /user
           method: get
+          cors: true
+    package:
+      include:
+        - './bin/get-all-user-func'
+  getuserbyidfunction:
+    runtime: go1.x
+    handler: bin/get-user-by-id-func
+    description: get user by id api
+    events:
+      - http:
+          path: /user/{userid}
+          method: get
+          cors: true
+    package:
+      include:
+        - './bin/get-user-by-id-func'
 

@@ -7,3 +7,7 @@ import (
 type ListUsersResponse struct {
 	Users []entities.Users `json:list_users`
 }
+
+type UsersResponse struct {
+	User entities.Users `json:user`
+}

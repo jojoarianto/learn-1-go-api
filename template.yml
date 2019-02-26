@@ -16,3 +16,17 @@ Resources:
       Environment:
         Variables:
           PG_CONNECTION: "PG_CONNECTION_URL"
+  GetUserByIdFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: bin/get-user-by-id-func
+      Runtime: go1.x
+      Events:
+        Vote:
+          Type: Api
+          Properties:
+            Path: /user/{userid}
+            Method: get
+      Environment:
+        Variables:
+          PG_CONNECTION: "PG_CONNECTION_URL"

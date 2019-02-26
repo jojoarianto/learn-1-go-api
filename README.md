@@ -1,4 +1,4 @@
-# POC Serverless with Golang
+# Serverless with Golang
 
 ## Prerequisites
 
@@ -34,9 +34,52 @@ sam local start-api -p 8000 --env-vars local.env.json
 ```
 ## Get All Users
 
-Response
+Request
 ```bash
 curl --request GET --url http://localhost:8000/user | json_pp 
+```
+
+Response
+```json
+{
+  "data": {
+    "Users": [
+      ...
+      {
+        "user_id": 3,
+        "email": "user_3@gmail.com"
+      },
+      {
+        "user_id": 4,
+        "email": "user_4@gmail.com"
+      },
+      {
+        "user_id": 5,
+        "email": "user_5@yahoo.com"
+      },
+      ...
+    ]
+  }
+}
+```
+
+## Get User By Id
+
+Request
+```bash
+curl --request GET --url http://localhost:8000/user/4 | json_pp
+```
+
+Response
+```json
+{
+  "data": {
+    "User": {
+      "user_id": 4,
+      "email": "user_4@gmail.com"
+    }
+  }
+}
 ```
 
 ### References
