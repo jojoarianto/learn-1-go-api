@@ -1,7 +1,7 @@
 package usecases
 
 import (
-	"github.com/jojoarianto/learn-1-go-api/src/dto"
+	"github.com/jojoarianto/learn-1-go-api/src/entities"
 	"github.com/jojoarianto/learn-1-go-api/src/repositories"
 )
 
@@ -13,10 +13,8 @@ func NewGetAllUsers(usr repositories.UsersRepository) *getAllUsers {
 	return &getAllUsers{usr: usr}
 }
 
-func (gau getAllUsers) GetAllUsers() (dto.ListUsersResponse, error) {
+func (gau getAllUsers) GetAllUsers() ([]entities.Users, error) {
 	data, _ := gau.usr.GetAll()
 
-	return dto.ListUsersResponse{
-		Users: data,
-	}, nil
+	return data, nil
 }

@@ -4,6 +4,7 @@ build:
 	dep ensure -v
 	env GOOS=linux go build -ldflags="-s -w" -o bin/get-all-user-func src/handlers/get-all-user-func/main.go
 	env GOOS=linux go build -ldflags="-s -w" -o bin/get-user-by-id-func src/handlers/get-user-by-id-func/main.go
+	env GOOS=linux go build -ldflags="-s -w" -o bin/create-user-func src/handlers/create-user-func/main.go
 
 clean:
 	rm -rf ./bin ./vendor Gopkg.lock

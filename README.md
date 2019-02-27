@@ -10,7 +10,7 @@
 ## Goal
 - [X] API to [get all user](#get-all-users)
 - [X] API to [get user by id](#get-user-by-id)
-- [ ] API to create user
+- [x] API to [create user](#create-user) 
 - [ ] API to delete user
 - [ ] API to update user
 
@@ -44,30 +44,25 @@ serverless deploy
 
 Request
 ```bash
-curl --request GET --url http://localhost:8000/user | json_pp 
+curl --request GET \
+  --url https://0d8n48wogc.execute-api.us-east-1.amazonaws.com/dev/users
 ```
 
 Response
 ```json
-{
-  "data": {
-    "Users": [
-      ...
-      {
-        "user_id": 3,
-        "email": "user_3@gmail.com"
-      },
-      {
-        "user_id": 4,
-        "email": "user_4@gmail.com"
-      },
-      {
-        "user_id": 5,
-        "email": "user_5@yahoo.com"
-      },
-      ...
-    ]
-  }
+
+  "data": [
+    ...
+    {
+      "user_id": 6,
+      "email": "user_6@gmail.com"
+    },
+    {
+      "user_id": 7,
+      "email": "user_7@hotmail.com"
+    },
+    ...
+  ]
 }
 ```
 
@@ -77,19 +72,29 @@ Response
 
 Request
 ```bash
-curl --request GET --url http://localhost:8000/user/4 | json_pp
+curl --request GET \
+  --url https://0d8n48wogc.execute-api.us-east-1.amazonaws.com/dev/user/14
 ```
 
 Response
 ```json
 {
   "data": {
-    "User": {
-      "user_id": 4,
-      "email": "user_4@gmail.com"
-    }
+    "user_id": 14,
+    "email": "create-something-cool@gmail.com"
   }
 }
+```
+
+## Create User
+Request
+```bash
+curl --request POST \
+  --url https://0d8n48wogc.execute-api.us-east-1.amazonaws.com/dev/user \
+  --header 'content-type: application/json' \
+  --data '{
+	      "email": "anything@gmail.com"
+    }'
 ```
 
 ### References

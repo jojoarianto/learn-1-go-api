@@ -6,7 +6,7 @@ provider:
   name: aws
   runtime: go1.x
   environment:
-    PG_CONNECTION: ${file(config.dev.json):PG_CONNECTION}
+    PG_CONNECTION: ${file(env.json):PG_CONNECTION}
 
 package:
  exclude:
@@ -39,4 +39,16 @@ functions:
     package:
       include:
         - './bin/get-user-by-id-func'
+  createuserfunction:
+    runtime: go1.x
+    handler: bin/create-user-func
+    description: create user api
+    events:
+      - http:
+          path: /user
+          method: post
+          cors: true
+    package:
+      include:
+        - './bin/create-user-func'
 

@@ -30,3 +30,17 @@ Resources:
       Environment:
         Variables:
           PG_CONNECTION: "PG_CONNECTION_URL"
+  CreateUserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: bin/create-user-func
+      Runtime: go1.x
+      Events:
+        Vote:
+          Type: Api
+          Properties:
+            Path: /user
+            Method: post
+      Environment:
+        Variables:
+          PG_CONNECTION: "PG_CONNECTION_URL"

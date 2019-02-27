@@ -1,7 +1,7 @@
 package usecases
 
 import (
-	"github.com/jojoarianto/learn-1-go-api/src/dto"
+	"github.com/jojoarianto/learn-1-go-api/src/entities"
 	"github.com/jojoarianto/learn-1-go-api/src/repositories"
 )
 
@@ -13,10 +13,11 @@ func NewGetUserById(usr repositories.UsersRepository) *getUserById {
 	return &getUserById{usr: usr}
 }
 
-func (gubi getUserById) GetUserById(id int) (dto.UsersResponse, error) {
-	data, _ := gubi.usr.Get(id)
+func (gubi getUserById) GetUserById(id int) (entities.Users, error) {
+	data, err := gubi.usr.Get(id)
+	if err != nil {
+		return entities.Users{}, err
+	}
 
-	return dto.UsersResponse{
-		User: data,
-	}, nil
+	return data, nil
 }

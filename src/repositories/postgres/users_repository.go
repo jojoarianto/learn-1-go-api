@@ -30,3 +30,11 @@ func (u *usersRepository) GetAll() ([]entities.Users, error) {
 	}
 	return usr, nil
 }
+
+func (u *usersRepository) CreateUser(usr entities.Users) error {
+	if err := u.db.Save(&usr).Error; err != nil {
+		return err
+	}
+
+	return nil
+}

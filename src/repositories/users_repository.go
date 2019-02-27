@@ -7,4 +7,5 @@ import (
 type UsersRepository interface {
 	Get(id int) (entities.Users, error)
 	GetAll() ([]entities.Users, error)
+	CreateUser(usr entities.Users) error
 }
